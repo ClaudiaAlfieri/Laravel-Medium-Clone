@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,6 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        User::factory()->create([
+            "name"=> "Test User",
+            "email"=> "teste@example.com",
+        ]);
+        
         $category =[
             'Technology',
             'Health',
@@ -31,5 +38,7 @@ class DatabaseSeeder extends Seeder
         }
 
         Post::factory(100)->create();
+
     }
 }
+
