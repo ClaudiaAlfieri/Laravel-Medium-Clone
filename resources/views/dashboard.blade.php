@@ -23,9 +23,9 @@
             </div>
             <div class="mt-8 text-gray-900">
 
-                @foreach ($posts as $post)
-                    <div
-                        class="flex bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 mb-8" style="min-height: 16rem;">
+                @forelse ($posts as $post)
+                    <div class="flex bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 mb-8"
+                        style="min-height: 16rem;">
 
                         <div class="p-5 pb-0 flex-1">
                             <a href="#">
@@ -33,7 +33,7 @@
                                     {{ $post->title }} </h5>
                             </a>
                             <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                {{  Str::words($post->content, 20) }}
+                                {{ Str::words($post->content, 20) }}
                             </div>
                             <a href="#"
                                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -46,10 +46,14 @@
                             </a>
                         </div>
                         <a href="#" style="width: 12rem; min-height: 100%; overflow: hidden;">
-                            <img class="object-cover rounded-r-lg" style="width: 100%; height: 100%; object-position: center;" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+                            <img class="object-cover rounded-r-lg"
+                                style="width: 100%; height: 100%; object-position: center;"
+                                src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
                         </a>
                     </div>
-                @endforeach
+                @empty
+                    <div class="text-center text-gray-400 py-16">No Post Found.</div>
+                @endforelse
 
             </div>
             {{ $posts->onEachSide(1)->links() }}

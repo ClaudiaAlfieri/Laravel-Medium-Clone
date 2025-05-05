@@ -22,22 +22,23 @@ class DatabaseSeeder extends Seeder
             "name"=> "Test User",
             "email"=> "teste@example.com",
         ]);
+
+        // $category =[
+        //     'Technology',
+        //     'Health',
+        //     'Science',
+        //     'Sports',
+        //     'Politics',
+        //     'Entertainment',
+        // ];
+
+        // foreach ($category as $category) {
         
-        $category =[
-            'Technology',
-            'Health',
-            'Science',
-            'Sports',
-            'Politics',
-            'Entertainment',
-        ];
+        //     Category::create(['name'=> $category,
+        //     ]);
+        // }
 
-        foreach ($category as $category) {
-            Category::create(['name'=> $category,
-            ]);
-        }
-
-        Post::factory(100)->create();
+        // Post::factory(100)->create();
 
     }
 }
