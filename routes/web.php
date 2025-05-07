@@ -8,9 +8,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [PostController::class, 'index'])
-->middleware(['auth', 'verified'])
-->name('dashboard');
+//Grupo de rotas que só são acessadas se o user for autenticado e verificado
+
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/', [PostController::class, 'index'])
+    ->name('dashboard');
+
+    Route::get('/post/create', [PostController::class,'create'])
+    ->name('post.create');
+
+    Route::post('/post/create', [PostController::class,'store'])
+    ->name('post.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

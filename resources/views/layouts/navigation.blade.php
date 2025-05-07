@@ -9,17 +9,15 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-
             </div>
 
-
             <div class="flex">
-                <a href="/test" class="flex items-center">
+                <a href="{{ route('post.create') }}" class="flex items-center">
                     <x-primary-button>
                         Create Post
                     </x-primary-button>
-
                 </a>
+
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
