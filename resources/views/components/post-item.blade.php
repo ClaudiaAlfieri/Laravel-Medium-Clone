@@ -23,6 +23,6 @@
     </div>
     <a href="#" style="width: 12rem; min-height: 100%; overflow: hidden;">
         <img class="object-cover rounded-r-lg" style="width: 100%; height: 100%; object-position: center;"
-            src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+            src="{{ Storage::url($post->image) }}" alt="" />
     </a>
 </div>
