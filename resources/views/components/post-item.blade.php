@@ -2,7 +2,10 @@
     style="min-height: 16rem;">
 
     <div class="p-5 pb-0 flex-1">
-        <a href="#">
+        <a href="{{ route('post.show', [
+        'username' => $post->user->username,
+        'post'=> $post->slug
+        ]) }}">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {{ $post->title }} </h5>
         </a>
