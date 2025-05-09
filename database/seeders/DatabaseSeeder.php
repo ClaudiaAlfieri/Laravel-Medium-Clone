@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
     {
 
         User::factory()->create([
-            "name"=> "Test User",
-            "email"=> "teste@example.com",
+            'name'=> 'Test User',
+            'username' => 'testuser',
+            'email'=> 'teste@example.com',
         ]);
 
         $category =[
