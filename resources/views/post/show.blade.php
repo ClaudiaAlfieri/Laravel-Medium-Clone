@@ -5,13 +5,7 @@
                 <h1 class="text-2x1 mb-4">{{ $post->title }}</h1>
                 <!-- User avatar -->
                 <div class="flex gap-4">
-                    @if ($post->user->image)
-                        <img src="{{ $post->user->imageUrl() }}" alt="{{ $post->user->name }}"
-                            class="w-12 h-12 rounded-full">
-                    @else
-                        <img src="https://liccar.com/wp-content/uploads/png-transparent-head-the-dummy-avatar-man-tie-jacket-user.png"
-                            alt="Dummy avatar" class="w-12 h-12 rounded-full">
-                    @endif
+                  <x-user-avatar :user="$post->user"/>
                 </div>
 
                 <div class="flex gap-2">
