@@ -13,10 +13,9 @@
                         <p>
                             {{ $user->bio }}
                         </p>
-                        <div>
-                            <button class="bg-emerald-600 rounded-xl px-4 py-2 text-white mt-4">
+                        <div class="mt-4">
+                            <button class="bg-emerald-600 rounded-full px-4 py-2 text-white">
                                 Follow
-
                             </button>
                         </div>
                     </div>
