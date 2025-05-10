@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="flex gap-2">
-                    <h3>{{ $post->user->name }}</h3>
+                    <a href="{{ route('profile.show', $post->user) }}" class="hover:underline">{{ $post->user->name }}</a>
                     &middot;
                     <a href="#" class="text-emerald-500">Follow</a>
                 </div>
@@ -27,7 +27,7 @@
 
                 <!-- Clap Section -->
                 <div class="mt-8 p-4 border-t border-b">
-                    <x-clap-button/>
+                    <x-clap-button />
                 </div>
 
                 <!-- Content Section -->
@@ -48,7 +48,7 @@
 
                 <!-- Clap Section -->
                 <div class="mt-8 p-4 border-t border-b">
-                    <x-clap-button/>
+                    <x-clap-button />
                 </div>
 
             </div>

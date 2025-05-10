@@ -2,11 +2,16 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicProfileController;
 use Illuminate\Support\Facades\Route;
+use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/@{user:username}',[PublicProfileController::class, 'show'])
+->name('profile.show');
 
 //Grupo de rotas que só são acessadas se o user for autenticado e verificado
 
