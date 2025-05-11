@@ -4,7 +4,7 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="flex">
                     <div class="flex-1 pr-8">
-                        <h1 class="text-5x1">{{ $user->name }}</h1>
+                        <h1 class="text-5xl">{{ $user->name }}</h1>
                         <div class="mt-8">
                             @forelse ($posts as $post)
                                 <x-post-item :post="$post"></x-post-item>
