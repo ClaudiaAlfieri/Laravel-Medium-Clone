@@ -1,31 +1,36 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PublicProfileController;
-use Illuminate\Support\Facades\Route;
 use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/@{user:username}',[PublicProfileController::class, 'show'])
-->name('profile.show');
+Route::get('/@{user:username}', [PublicProfileController::class, 'show'])
+    ->name('profile.show');
 
 //Grupo de rotas que só são acessadas se o user for autenticado e verificado
 
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [PostController::class, 'index'])
-    ->name('dashboard');
+        ->name('dashboard');
 
-    Route::get('/post/create', [PostController::class,'create'])
-    ->name('post.create');
+    Route::get('/post/create', [PostController::class, 'create'])
+        ->name('post.create');
 
-    Route::post('/post/create', [PostController::class,'store'])
-    ->name('post.store');
+    Route::post('/post/create', [PostController::class, 'store'])
+        ->name('post.store');
 
-    Route::get('/@{username}/{post:slug}', [PostController::class,'show'])->name('post.show');
+    Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])->name('post.show');
+
+    Route::post('/follow/{user}', [FollowerController::class, 'followUnfollow'])
+        ->name('follow?');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -34,4 +39,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
