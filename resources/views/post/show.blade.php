@@ -25,9 +25,7 @@
                     </x-follow-ctr>
 
                     <!-- Clap Section -->
-                    <div class="mt-8 p-4 border-t border-b">
-                        <x-clap-button />
-                    </div>
+                    <x-clap-button :post="$post" />
 
                     <!-- Content Section -->
                     <div class="mt-4">
@@ -47,7 +45,7 @@
 
                     <!-- Clap Section -->
                     <div class="mt-8 p-4 border-t border-b">
-                        <x-clap-button />
+                        <x-clap-button :post="$post" />
                     </div>
 
                 </div>

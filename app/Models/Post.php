@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Clap;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +30,11 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function claps()
+    {
+        return $this->hasMany(Clap::class);
     }
 
     public function readTime($wordsPerMinute = 100)
