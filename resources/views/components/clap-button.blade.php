@@ -1,17 +1,21 @@
 @props(['post'])
 
+@auth
 
 <div x-data="{
-    hasClapped: {{ auth()->user()->hasClapped($post) ? 'true' : 'false' }},
+    hasClapped: {{ auth()->user() && auth()->user()->hasClapped($post) ? 'true' : 'false' }},
     count: {{ $post->claps()->count() }},
     clap() {
         axios.post('/clap/{{ $post->id }}')
             .then(response => {
-                this.hasClapped = !this.hasClapped;
+                this.hasClapped = response.data.hasClapped;
                 this.count = response.data.clapsCount;
             })
             .catch(error => {
                 console.error(error);
+                if (error.response && error.response.status === 401) {
+                    window.location.href = '/login';
+                }
             });
     }
 
@@ -33,3 +37,4 @@
         <span x-text="count"></span>
     </button>
 </div>
+@endauth

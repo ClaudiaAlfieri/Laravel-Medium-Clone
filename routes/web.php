@@ -16,11 +16,14 @@ Route::get('/', function () {
 Route::get('/@{user:username}', [PublicProfileController::class, 'show'])
     ->name('profile.show');
 
+Route::get('/', [PostController::class, 'index'])
+    ->name('dashboard');
+
+Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])->name('post.show');
+
 //Grupo de rotas que só são acessadas se o user for autenticado e verificado
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [PostController::class, 'index'])
-        ->name('dashboard');
 
     Route::get('/category/{category}', [PostController::class, 'category'])
         ->name('post.byCategory');
@@ -30,8 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/post/create', [PostController::class, 'store'])
         ->name('post.store');
-
-    Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
     Route::post('/follow/{user}', [FollowerController::class, 'followUnfollow'])
         ->name('follow');
