@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail , HasMedia
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, InteractsWithMedia;
@@ -59,7 +59,14 @@ class User extends Authenticatable implements MustVerifyEmail , HasMedia
         $this
             ->addMediaConversion('avatar')
             ->width(128)
-            ->crop(128,128);
+            ->crop(128, 128);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatar')
+            ->singleFile();
+
     }
 
 
@@ -74,19 +81,36 @@ class User extends Authenticatable implements MustVerifyEmail , HasMedia
     }
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id','follower_id');
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
+
+    // public function imageUrl()
+    // {
+    //     return $this->getFirstMedia('avatar')?->getUrl('avatar');
+    // }
 
     public function imageUrl()
     {
-        return $this->getFirstMedia()?->getUrl('avatar');
+        $media = $this->getFirstMedia('avatar');
+
+        if ($media) {
+            return $media->getUrl('avatar');
+        }
+
+        // Fallback para o campo image se não houver mídia
+        if ($this->image) {
+            return Storage::url($this->image);
+        }
+
+        // Fallback para uma imagem padrão
+        return asset('images/default-avatar.jpg');
     }
 
     public function isFollowedBy(?User $user)
     {
         return $this->followers()->where('follower_id', $user->id)->exists();
 
-        if(!$user) {
+        if (!$user) {
             return false;
         }
     }
