@@ -31,6 +31,10 @@ class Post extends Model implements HasMedia
         $this
             ->addMediaConversion('preview')
             ->width(400);
+
+        $this
+            ->addMediaConversion('large')
+            ->width(1200);
     }
 
     public function user()
@@ -56,17 +60,17 @@ class Post extends Model implements HasMedia
         return max(1, $minutes);
     }
 
-    // public function imageUrl()
+    // public function imageUrl($conversionName = '')
     // {
-    //     return $this->getFirstMedia()->getUrl('preview');
+    //     return $this->getFirstMedia()?->getUrl($conversionName);
     // }
 
-    public function imageUrl()
+    public function imageUrl($conversionName = '')
     {
         $media = $this->getFirstMedia();
 
         if ($media) {
-            return $media->getUrl('preview');
+            return $media->getUrl($conversionName);
         }
 
         // Caso não exista mídia associada, usa o campo image do banco de dados
