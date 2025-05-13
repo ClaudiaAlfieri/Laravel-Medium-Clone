@@ -17,7 +17,7 @@ class Post extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'image',
+        // 'image',
         'title',
         'slug',
         'content',
@@ -30,7 +30,7 @@ class Post extends Model implements HasMedia
     {
         $this
             ->addMediaConversion('preview')
-            ->with(400);
+            ->width(400);
     }
 
     public function user()
@@ -56,11 +56,25 @@ class Post extends Model implements HasMedia
         return max(1, $minutes);
     }
 
+    // public function imageUrl()
+    // {
+    //     return $this->getFirstMedia()->getUrl('preview');
+    // }
+
     public function imageUrl()
     {
+        $media = $this->getFirstMedia();
+
+        if ($media) {
+            return $media->getUrl('preview');
+        }
+
+        // Caso não exista mídia associada, usa o campo image do banco de dados
         if ($this->image) {
             return Storage::url($this->image);
         }
-        return null;
+
+        // Fallback para uma imagem padrão
+        return asset('images/default-post.jpg');
     }
 }
