@@ -1,7 +1,7 @@
-📰 Medium Clone with Laravel
+# 📰 Medium Clone with Laravel
 Welcome to a minimalistic version of Medium, built with 💡 Laravel as part of a Laravel learning course. This project demonstrates how to build a clean, functional blog platform with essential features like creating posts, following users, and clapping for great content 👏.
 
-🚀 Features
+## 🚀 Features
 📝 Create, edit, and delete posts
 
 👤 User profiles and avatars
@@ -20,7 +20,9 @@ Welcome to a minimalistic version of Medium, built with 💡 Laravel as part of 
 
 📱 Responsive layout with Laravel Blade & TailwindCSS
 
-🛠️ Tech Stack
+
+## 🛠️ Tech Stack
+
 ⚙️ Laravel 10+
 
 🧩 Laravel Breeze (authentication scaffolding)
@@ -29,10 +31,11 @@ Welcome to a minimalistic version of Medium, built with 💡 Laravel as part of 
 
 🌬️ TailwindCSS
 
-🖼️ spatie/laravel-medialibrary for media handling
+🖼️ Spatie/laravel-medialibrary for media handling
 
-📦 Installation
-bash
+
+## 📦 Installation
+```bash
 Copiar
 Editar
 git clone https://github.com/yourusername/medium-clone-laravel.git
@@ -44,9 +47,12 @@ php artisan migrate --seed
 php artisan storage:link
 npm install && npm run dev
 php artisan serve
+```
+
+
 Make sure you have your database set up and configured in the .env file 🗃️.
 
-🔐 Auth & Access
+## 🔐 Auth & Access
 Register or log in to:
 
 Create and manage your posts
