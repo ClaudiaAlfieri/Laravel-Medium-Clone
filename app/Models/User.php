@@ -3,14 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Notifications\Notifiable;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
@@ -54,6 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         ];
     }
 
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
@@ -66,9 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         $this->addMediaCollection('avatar')
             ->singleFile();
-
     }
-
 
     public function posts()
     {
@@ -79,47 +78,34 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
+
     public function followers()
     {
         return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
 
-    // public function imageUrl()
-    // {
-    //     return $this->getFirstMedia('avatar')?->getUrl('avatar');
-    // }
-
     public function imageUrl()
     {
         $media = $this->getFirstMedia('avatar');
-
-        if ($media) {
+        if (!$media) {
+            return null;
+        }
+        if ($media->hasGeneratedConversion('avatar')) {
             return $media->getUrl('avatar');
         }
-
-        // Fallback para o campo image se não houver mídia
-        if ($this->image) {
-            return Storage::url($this->image);
-        }
-
-        // Fallback para uma imagem padrão
-        return asset('images/default-avatar.jpg');
+        return $media->getUrl();
     }
-
-
 
     public function isFollowedBy(?User $user)
     {
         if (!$user) {
             return false;
         }
-
         return $this->followers()->where('follower_id', $user->id)->exists();
     }
 
     public function hasClapped(Post $post)
     {
         return $post->claps()->where('user_id', $this->id)->exists();
-
     }
 }
