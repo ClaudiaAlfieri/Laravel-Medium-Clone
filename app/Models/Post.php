@@ -77,8 +77,7 @@ class Post extends Model implements HasMedia
         if ($this->image) {
             return Storage::url($this->image);
         }
+        return null;
 
-        // Fallback para uma imagem padrão
-        return asset('images/default-post.jpg');
     }
 }
