@@ -1,5 +1,5 @@
 # 📰 Medium Clone with Laravel
-Welcome to a minimalistic version of Medium, built with 💡 Laravel as part of a Laravel learning course. This project demonstrates how to build a clean, functional blog platform with essential features like creating posts, following users, and clapping for great content 👏.
+This is a minimalistic version of Medium, built with 💡 Laravel as part of a Laravel learning course. This project demonstrates how to build a clean, functional blog platform with essential features like creating posts, following users, and clapping for great content 👏.
 
 ## 🚀 Features
 📝 Create, edit, and delete posts
