@@ -21,12 +21,12 @@ Route::get('/', [PostController::class, 'index'])
 
 Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
+Route::get('/category/{category}', [PostController::class, 'category'])
+    ->name('post.byCategory');
+
 //Grupo de rotas que só são acessadas se o user for autenticado e verificado
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('/category/{category}', [PostController::class, 'category'])
-        ->name('post.byCategory');
 
     Route::get('/post/create', [PostController::class, 'create'])
         ->name('post.create');
