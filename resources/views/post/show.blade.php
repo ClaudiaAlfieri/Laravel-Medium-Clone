@@ -25,6 +25,25 @@
                         {{ $post->created_at->format('M d, Y') }}
                     </x-follow-ctr>
 
+                    <!-- Edit post Section -->
+
+                    @if ($post->user_id === Auth::id())
+                    <div class="py-4 mt-8 border-t border-b border-gray-200">
+                        <x-primary-button>
+                            Edit Post
+                        </x-primary-button>
+
+                        <form class="inline-block" action="{{ route('post.destroy', $post) }}" method="post">
+                            @csrf
+                            @method('delete')
+                        </form>
+
+                        <x-danger-button>
+                            Delete Post
+                        </x-danger-button>
+                    </div>
+                    @endif
+
                     <!-- Clap Section -->
                     <x-clap-button :post="$post" />
 
