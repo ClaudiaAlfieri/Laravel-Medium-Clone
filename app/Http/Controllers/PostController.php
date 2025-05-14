@@ -86,15 +86,26 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+
+        if($post->user_id !== Auth::id()){
+            abort(403);
+        }
+        $categories = Category::get();
+        return view('post.edit', [
+            'post'=>$post,
+            'categories'=>$categories,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostCreaterequest $request, Post $post)
     {
-        //
+        if($post->user_id !== Auth::id()){
+            abort(403);
+        }
+
     }
 
     /**
@@ -110,7 +121,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('dashboard');
-        
+
 
     }
 

@@ -29,7 +29,7 @@
 
                     @if ($post->user_id === Auth::id())
                     <div class="py-4 mt-8 border-t border-b border-gray-200">
-                        <x-primary-button>
+                        <x-primary-button href="{{ route('post.edit', $post->slug) }}">
                             Edit Post
                         </x-primary-button>
 
