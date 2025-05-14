@@ -4,9 +4,10 @@
             <h1 class="text-3xl mb-4">
                 Update Post: <strong class="font-bold">{{ $post->title }}</strong></h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
-                <form action="{{ route('post.store') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('post.update', $post->id) }}" enctype="multipart/form-data" method="post">
 
                     @csrf
+                    @method('put')
 
                     @if ($post->imageUrl())
                         <div class="mb-8">

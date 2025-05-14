@@ -106,13 +106,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return asset('images/default-avatar.jpg');
     }
 
+
+
     public function isFollowedBy(?User $user)
     {
-        return $this->followers()->where('follower_id', $user->id)->exists();
-
         if (!$user) {
             return false;
         }
+
+        return $this->followers()->where('follower_id', $user->id)->exists();
     }
 
     public function hasClapped(Post $post)

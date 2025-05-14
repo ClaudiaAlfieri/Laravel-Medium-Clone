@@ -100,11 +100,21 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostCreaterequest $request, Post $post)
+    public function update(PostUpdateRequest $request, Post $post)
     {
         if($post->user_id !== Auth::id()){
             abort(403);
         }
+        $data = $request->validated();
+
+        $post->update($data);
+
+        if($data['image'] ?? false){
+            $post->addMediaFromRequest('image')
+            ->toMediaCollection();
+        }
+
+        return redirect()->route('myPosts');
 
     }
 
