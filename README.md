@@ -49,7 +49,6 @@ npm install && npm run dev
 php artisan serve
 ```
 
-
 Make sure you have your database set up and configured in the .env file 🗃️.
 
 ## 🔐 Auth & Access
