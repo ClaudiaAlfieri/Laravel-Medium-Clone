@@ -33,7 +33,6 @@ This is a minimalistic version of Medium, built with 💡 Laravel as part of a L
 
 🖼️ Spatie/laravel-medialibrary for media handling
 
-
 ## 📦 Installation
 ```bash
 Copiar
@@ -48,7 +47,6 @@ php artisan storage:link
 npm install && npm run dev
 php artisan serve
 ```
-
 Make sure you have your database set up and configured in the .env file 🗃️.
 
 ## 🔐 Auth & Access
@@ -71,4 +69,7 @@ This project was developed by Claudia Alfieri for educational purposes.
 ## 📝 Contribution 🤝
 
 Contributions are welcome through pull requests.
+
+
+
 
